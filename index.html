@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz com Abas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .tabs {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+        }
+
+        .tabs button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            flex: 1;
+        }
+
+        .tabs button:hover {
+            background-color: #ddd;
+        }
+
+        .tabs button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border-top: none;
+            height: calc(100vh - 50px);
+            box-sizing: border-box;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .feedback {
+            display: none;
+            color: red;
+        }
+
+        .feedback.correct {
+            color: rgb(59, 163, 59);
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .send-button, .option-button {
+            background: linear-gradient(to right, #bfcbc0, #011001);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px 0 rgba(11, 11, 11, 0.2);
+        }
+
+        .send-button:hover, .option-button:hover {
+            background: linear-gradient(to right, #47974b, #4CAF50);
+            box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .input-field {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .input-field:focus {
+            border-color: #071708;
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        .tabs button:nth-child(1), #Aba1 {
+            background: linear-gradient(to bottom, #181515, #ff6666);
+        }
+        .tabs button:nth-child(2), #Aba2 {
+            background: linear-gradient(to bottom, #0e160e, #66ff66);
+        }
+        .tabs button:nth-child(3), #Aba3 {
+            background: linear-gradient(to bottom, #0e0e11, #6666ff);
+        }
+        .tabs button:nth-child(4), #Aba4 {
+            background: linear-gradient(to bottom, #0b0b0b, #ffff66);
+        }
+        .tabs button:nth-child(5), #Aba5 {
+            background: linear-gradient(to bottom, #0e0b0e, #ff66ff);
+        }
+        .tabs button:nth-child(6), #Aba6 {
+            background: linear-gradient(to bottom, #050606, #66ffff);
+        }
+        .tabs button:nth-child(7), #Aba7 {
+            background: linear-gradient(to bottom, #121110, #ffb366);
+        }
+        .tabs button:nth-child(8), #Aba8 {
+            background: linear-gradient(to bottom, #100f11, #b366ff);
+        }
+
+        #winMessage {
+            display: none;
+            color: black;
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <button class="tablinks" onclick="openTab(event, 'Aba1')">Aba 1</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba2')">Aba 2</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba3')">Aba 3</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba4')">Aba 4</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba5')">Aba 5</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba6')">Aba 6</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba7')">Aba 7</button>
+        <button class="tablinks" onclick="openTab(event, 'Aba8')">Aba 8</button>
+    </div>
+
+    <div id="Aba1" class="tabcontent">
+        <h3>Quiz 1</h3>
+        <p class="question">Qual é o maior planeta do nosso sistema solar?</p>
+        <input type="text" id="resposta1" class="input-field">
+        <button class="send-button" onclick="checkAnswer('resposta1', 'Júpiter', 'feedback1', 'Aba2')">Enviar</button>
+        <p id="feedback1" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba2" class="tabcontent">
+        <h3>Quiz 2</h3>
+        <p class="question">Qual é a capital da Espanha?</p>
+        <input type="text" id="resposta2" class="input-field">
+        <button class="send-button" onclick="checkAnswer('resposta2', 'Madrid', 'feedback2', 'Aba3')">Enviar</button>
+        <p id="feedback2" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba3" class="tabcontent">
+        <h3>Quiz 3</h3>
+        <p class="question">Quem pintou a Mona Lisa?</p>
+        <input type="text" id="resposta3" class="input-field">
+        <button class="send-button" onclick="checkAnswer('resposta3', 'Leonardo da Vinci', 'feedback3', 'Aba4')">Enviar</button>
+        <p id="feedback3" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba4" class="tabcontent">
+        <h3>Quiz 4</h3>
+        <p class="question">Qual é o planeta mais próximo do Sol?</p>
+        <input type="text" id="resposta4" class="input-field">
+        <button class="send-button" onclick="checkAnswer('resposta4', 'Mercúrio', 'feedback4', 'Aba5')">Enviar</button>
+        <p id="feedback4" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba5" class="tabcontent">
+        <h3>Quiz 5</h3>
+        <p class="question">Qual dos seguintes tipos de rochas é formado através do resfriamento e solidificação de magma ou lava?</p>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Rochas ígneas', 'feedback5', 'Aba6')">Rochas sedimentares</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Rochas ígneas', 'feedback5', 'Aba6')">Rochas metamórficas</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Rochas ígneas', 'feedback5', 'Aba6')">Rochas ígneas</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Rochas ígneas', 'feedback5', 'Aba6')">Rochas carbonáticas</button>
+        <p id="feedback5" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba6" class="tabcontent">
+        <h3>Quiz 6</h3>
+        <p class="question">Qual é o maior oceano do mundo?</p>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Oceano Pacífico', 'feedback6', 'Aba7')">Oceano Índico</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Oceano Pacífico', 'feedback6', 'Aba7')">Oceano Atlântico</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Oceano Pacífico', 'feedback6', 'Aba7')">Oceano Pacífico</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Oceano Pacífico', 'feedback6', 'Aba7')">Oceano Ártico</button>
+        <p id="feedback6" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba7" class="tabcontent">
+        <h3>Quiz 7</h3>
+        <p class="question">Qual é o país mais populoso do mundo?</p>
+        <button class="option-button" onclick="checkAnswerOption(this, 'China', 'feedback7', 'Aba8')">China</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'China', 'feedback7', 'Aba8')">Brasil</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'China', 'feedback7', 'Aba8')">Alemanha</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'China', 'feedback7', 'Aba8')">Argentina</button>
+        <p id="feedback7" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    <div id="Aba8" class="tabcontent">
+        <h3>Quiz 8</h3>
+        <p class="question">Quem pintou "A Noite Estrelada"?</p>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Vincent van Gogh', 'feedback8', 'winMessage')">Gustav Klimt</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Vincent van Gogh', 'feedback8', 'winMessage')">Michelangelo Buonarroti</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Vincent van Gogh', 'feedback8', 'winMessage')">Leonardo da Vinci</button>
+        <button class="option-button" onclick="checkAnswerOption(this, 'Vincent van Gogh', 'feedback8', 'winMessage')">Vincent van Gogh</button>
+        <p id="feedback8" class="feedback">Resposta errada! Tente novamente.</p>
+    </div>
+
+    
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function checkAnswer(inputId, correctAnswer, feedbackId, nextTab) {
+            var answer = inputId.startsWith('opcao') ? correctAnswer : document.getElementById(inputId).value;
+            var feedback = document.getElementById(feedbackId);
+
+            if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
+                feedback.textContent = "Resposta correta!";
+                feedback.className = "feedback correct";
+                feedback.style.display = "block";
+                setTimeout(function() {
+                    feedback.style.display = "none";
+                    openTab({ currentTarget: document.querySelector(`.tablinks[onclick="openTab(event, '${nextTab}')"]`) }, nextTab);
+                }, 1000);
+            } else {
+                feedback.textContent = "Resposta errada! Tente novamente.";
+                feedback.className = "feedback";
+                feedback.style.display = "block";
+            }
+        }
+
+        function checkAnswerOption(button, correctAnswer, feedbackId, nextTab) {
+            var answer = button.textContent;
+            var feedback = document.getElementById(feedbackId);
+
+            if (answer === correctAnswer) {
+                feedback.textContent = "Você venceu!";
+                feedback.className = "feedback correct";
+                feedback.style.display = "block";
+                setTimeout(function() {
+                    feedback.style.display = "none";
+                    if (nextTab === 'winMessage') {
+                        document.getElementById('winMessage').style.display = 'block';
+                    } else {
+                        openTab({ currentTarget: document.querySelector(`.tablinks[onclick="openTab(event, '${nextTab}')"]`) }, nextTab);
+                    }
+                }, 1000);
+            } else {
+                feedback.textContent = "Resposta errada! Tente novamente.";
+                feedback.className = "feedback";
+                feedback.style.display = "block";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.tablinks').click();
+        });
+
+        
+
+    </script>
+</body>
+</html>
